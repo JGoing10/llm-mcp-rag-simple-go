@@ -134,6 +134,3 @@ go build -o llm-mcp-rag-simple .
 - MCP 服务未发现工具：确认可执行文件路径、权限与服务是否正常启动
 - 响应速度慢：可切换更快的 API 服务商、降低 `TIMEOUT_SECONDS` 或减少知识库规模
 
-## 许可证
-
-MIT License
