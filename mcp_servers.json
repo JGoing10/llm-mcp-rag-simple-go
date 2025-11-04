@@ -1,0 +1,7 @@
+[
+  {
+    "Name": "calculator",
+    "Command": ".\\mcp-calculator-server.exe",
+    "Args": []
+  }
+]
