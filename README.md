@@ -89,12 +89,12 @@ go build -o llm-mcp-rag-simple .
 [
   {
     "Name": "calculator",
-    //注意填写正确的mcp服务器路径
     "Command": "mcp-calculator-server.exe",
     "Args": []
   }
 ]
 ```
+注意:填写正确的mcp服务器路径
 
 启动后，代理会自动：
 1. 读取 JSON 并为每个服务创建 MCP 客户端
