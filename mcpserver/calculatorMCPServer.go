@@ -8,16 +8,15 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-// 计算器 MCP 服务器：提供基础加减乘除
+// 示例 计算器 MCP 服务器：提供基础加减乘除
 func main() {
 	server := mcp.NewServer(&mcp.Implementation{
 		Name:    "mcp-calculator-server",
 		Version: "0.1.0",
 	}, nil)
 
-	// 入参定义
 	type CalcArgs struct {
-		Op string  `json:"op"` // add / sub / mul / div
+		Op string  `json:"op"`
 		A  float64 `json:"a"`
 		B  float64 `json:"b"`
 	}
@@ -31,15 +30,15 @@ func main() {
 			"properties": map[string]any{
 				"op": map[string]any{
 					"type":        "string",
-					"description": "操作类型：add/sub/mul/div",
+					"description": "运算类型：add/sub/mul/div",
 				},
 				"a": map[string]any{
 					"type":        "number",
-					"description": "左操作数",
+					"description": "第一个数",
 				},
 				"b": map[string]any{
 					"type":        "number",
-					"description": "右操作数",
+					"description": "第二个数",
 				},
 			},
 			"required": []string{"op", "a", "b"},
@@ -57,14 +56,14 @@ func main() {
 			if args.B == 0 {
 				return &mcp.CallToolResult{
 					IsError: true,
-					Content: []mcp.Content{&mcp.TextContent{Text: "division by zero"}},
+					Content: []mcp.Content{&mcp.TextContent{Text: "除数不能为0"}},
 				}, nil, nil
 			}
 			result = args.A / args.B
 		default:
 			return &mcp.CallToolResult{
 				IsError: true,
-				Content: []mcp.Content{&mcp.TextContent{Text: fmt.Sprintf("unsupported op: %s", args.Op)}},
+				Content: []mcp.Content{&mcp.TextContent{Text: fmt.Sprintf("错误或不支持该运算符: %s", args.Op)}},
 			}, nil, nil
 		}
 
