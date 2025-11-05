@@ -13,7 +13,7 @@
 ├── embedding/       # 嵌入检索：文本向量化 + 相似度搜索
 ├── vectorstore/     # 内存向量存储，支持余弦相似度
 ├── mcp/             # MCP 客户端：会话、工具发现、工具调用
-├── mcp-Server/      # 示例 MCP 服务器（计算器）源码
+├── mcpserver/      # 示例 MCP 服务器（计算器）源码
 ├── knowledge/       # 示例 知识库文档（自动加载并向量化）
 ├── config/          # 配置加载与校验（.env）
 ├── utils/           # 日志与辅助工具
@@ -70,7 +70,7 @@ go build -o llm-mcp-rag-simple .
 ```
 
 首次启动会：
-- 加载 `knowledge/` 目录下的 `.md`/`.txt` 文档并向量化 (注意:当前加载到内存，如有需要可自行添加数据库（待做）)
+- 加载 `knowledge/` 目录下的 `.md`/`.txt` 文档并向量化 (注意:当前为加载到内存，如有需要可自行添加数据库（TODO）)
 - 尝试读取 `mcp_servers.json` 并连接配置的 MCP 服务
 - 启动交互式命令行：输入问题或使用内置命令
 
@@ -89,11 +89,12 @@ go build -o llm-mcp-rag-simple .
 [
   {
     "Name": "calculator",
-    "Command": ".\\mcp-calculator-server.exe",
+    "Command": "mcp-calculator-server.exe",
     "Args": []
   }
 ]
 ```
+注意:填写正确的mcp服务器路径
 
 启动后，代理会自动：
 1. 读取 JSON 并为每个服务创建 MCP 客户端
@@ -134,6 +135,3 @@ go build -o llm-mcp-rag-simple .
 - MCP 服务未发现工具：确认可执行文件路径、权限与服务是否正常启动
 - 响应速度慢：可切换更快的 API 服务商、降低 `TIMEOUT_SECONDS` 或减少知识库规模
 
-## 许可证
-
-MIT License
