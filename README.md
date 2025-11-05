@@ -13,7 +13,7 @@
 ├── embedding/       # 嵌入检索：文本向量化 + 相似度搜索
 ├── vectorstore/     # 内存向量存储，支持余弦相似度
 ├── mcp/             # MCP 客户端：会话、工具发现、工具调用
-├── mcp-Server/      # 示例 MCP 服务器（计算器）源码
+├── mcpserver/      # 示例 MCP 服务器（计算器）源码
 ├── knowledge/       # 示例 知识库文档（自动加载并向量化）
 ├── config/          # 配置加载与校验（.env）
 ├── utils/           # 日志与辅助工具
@@ -89,7 +89,8 @@ go build -o llm-mcp-rag-simple .
 [
   {
     "Name": "calculator",
-    "Command": ".\\mcp-calculator-server.exe",
+    //注意填写正确的mcp服务器路径
+    "Command": "mcp-calculator-server.exe",
     "Args": []
   }
 ]
